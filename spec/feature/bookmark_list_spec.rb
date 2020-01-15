@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 feature 'Bookmark list' do
   scenario 'shows bookmark list' do
-    database = PG.connect( dbname: 'bookmark_manager_test' )
-
-    database.exec("INSERT INTO bookmarks (url) VALUES('http://www.makersacademy.com');")
-    database.exec("INSERT INTO bookmarks (url) VALUES('http://www.twitter.com');")
-    database.exec("INSERT INTO bookmarks (url) VALUES('http://www.google.com');")
+    Bookmark.add_bookmark(url: 'http://www.twitter.com', title: 'Twitter')
+    Bookmark.add_bookmark(url: 'http://www.google.com', title: 'Google')
 
     visit '/bookmarks'
-    expect(page).to have_content('http://www.google.com')
+    expect(page).to have_link('Twitter', href: 'http://www.twitter.com')
+    expect(page).to have_link('Google', href: 'http://www.google.com')
   end
 end

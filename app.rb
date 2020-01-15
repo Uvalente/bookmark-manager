@@ -1,25 +1,24 @@
 # frozen_string_literal: true
 
 require 'sinatra/base'
-require_relative './lib/bookmarks.rb'
+require './lib/bookmark'
 
 class BookmarkManager < Sinatra::Base
   before do
-    @database = Bookmarks.instance
-    @bookmark = Bookmarks
+    @database = Bookmark.instance
+    @bookmarks = Bookmark
   end
 
   get '/' do
-    'Bookmark List'
+    redirect '/bookmarks'
   end
 
   get '/bookmarks' do
-    erb :bookmark
+    erb :bookmarks
   end
 
-  post '/add-url' do
-    p params
-    @bookmark.add_bookmark(params[:bookmark])
+  post '/bookmarks' do
+    Bookmark.add_bookmark(url: params[:url], title: params[:title])
     redirect '/bookmarks'
   end
 
