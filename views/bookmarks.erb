@@ -3,12 +3,16 @@
   <% @bookmarks.all.each do |bookmark| %>
     <li>
       <a href='<%= bookmark.url %>' target='_blank'><%= bookmark.title %></a>
+      <form action='/bookmarks/<%= bookmark.id %>' method='POST'>
+        <input type='hidden' name='_method' value='delete'>
+        <input type='submit' id='trial' value='Delete <%= bookmark.title %>'>
+      </form>
     </li>
   <% end %>
 </ul>
 
 <form action='/bookmarks' method='POST'>
   <input type='text' name='title' placeholder=' Website Name' required>
-  <input type='text' name='url' placeholder=' Website URL'>
+  <input type='text' name='url' placeholder=' Website URL' required>
   <input type='submit' value='Add Bookmark'>
 </form>

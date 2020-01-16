@@ -8,6 +8,7 @@
 
 # Set the environment to test
 require_relative './setup_test_database'
+
 ENV['ENVIRONMENT'] = 'test'
 
 # Bring in the contents of the app.rb file. the below equivalent to require_relative

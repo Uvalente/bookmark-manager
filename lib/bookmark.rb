@@ -27,6 +27,10 @@ class Bookmark
   end
 
   def self.add_bookmark(url:, title:)
-    @database.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}');")
+    @database.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}') RETURNING id, url, title;")
+  end
+
+  def self.delete(id)
+    @database.exec("DELETE FROM bookmarks WHERE id='#{id}';")
   end
 end
