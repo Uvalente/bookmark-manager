@@ -4,10 +4,11 @@
     <li>
       <a href='<%= bookmark.url %>' target='_blank'><%= bookmark.title %></a>
       <form action='/bookmarks/<%= bookmark.id %>' method='POST'>
-        <input type='hidden' name='_method' value='delete'>
+        <input type='hidden' name='_method' value='DELETE'>
         <input type='submit' id='trial' value='Delete <%= bookmark.title %>'>
       </form>
-      <form class='update'>
+      <form class='update' action='/bookmarks/<%= bookmark.id %>' method='POST'>
+        <input type='hidden' name='_method' value='PATCH'>
         <input type='test' name='title' placeholder='Title'>
         <input type='text' name='url' placeholder='URL'>
         <input type='submit' value='Update <%= bookmark.title %>'>
