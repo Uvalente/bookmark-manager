@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-feature 'add bookmark' do
-  scenario 'user type in a url to save' do
+feature 'update bookmark' do
+  scenario 'user update url and title' do
     visit '/bookmarks'
     fill_in 'url', with: 'http://www.mock.com'
     fill_in 'title', with: 'Mock'
